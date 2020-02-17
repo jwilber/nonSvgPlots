@@ -1,0 +1,17 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+.waffle {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+  /*height: 100px;*/
+}
+
+.block {
+  /*flex: 9%;*/
+/*  max-width: 10%;
+  max-height: 10%;*/
+  height: 10px;
+  margin: 1px;
+  width: 1;
+}
