@@ -2,9 +2,9 @@
 //still needs labels. may need to refactor grid to put labels in the bottom-most divs
 
 const createGrid = (div, x, y) => {
-  let chartDiv = document.getElementById(div);
-  let chartWidth = x;
-  let chartHeight = y;
+  const chartDiv = document.getElementById(div);
+  const chartWidth = x;
+  const chartHeight = y;
 
   //css grid rule
   const gridTemplate = [];
