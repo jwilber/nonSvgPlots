@@ -3,17 +3,214 @@
 <head>
 	<title></title>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="waffle.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="hist.css"> -->
-	<link rel="stylesheet" type="text/css" href="stack.css">
+	<link rel="stylesheet" type="text/css" href="waffle.css">
 </head>
 <body>
-	<!-- <figure class="waffle"></figure> -->
-	<!-- <figure class="hist"></figure> -->
-	<figure class='stack'></figure>
+	<center><h1>THE COLORS OF NATIONAL GEOGRAPHIC</h1></center>
+	<div id="container"></div>
+<!-- 
+	{
+		"2020": {
+		"january": [
+				{},
+				{},
+			],
+		"feb": {},
+		...}
+	} -->
 
-	<!-- <script src="waffle.js"></script> -->
-	<!-- <script src="histogram.js"></script> -->
-	<script src="stack.js"></script>
+	<script src="waffle2.js"></script>
+	<script>
+		const months = [
+			'jan',
+			'feb',
+			'mar',
+			'apr',
+			'may',
+			'jun',
+			'jul',
+			'aug',
+			'sep',
+			'oct',
+			'nov',
+			'dec'
+			];
+		const data = {
+			"2020": {
+				"jan": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"feb": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"mar": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"apr": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"may": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"jun": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"jul": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"aug": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"sep": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"oct": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"nov": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 100, 100), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"dec": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			]
+		 },
+		 "1988": {
+				"jan": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(80, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(20, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(20, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"feb": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 5), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"mar": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"apr": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 165), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 99), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"may": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"jun": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"jul": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 0, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 0, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 10, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"aug": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 0, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 10, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"sep": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"oct": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],"nov": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			],
+			"dec": [
+			  {color: "d3.rgb(12, 27, 199)", percentage: 10, img_url: ''},
+			  {color: d3.rgb(180, 115, 65), percentage: 20, img_url: ''},
+			  {color: d3.rgb(120, 67, 199), percentage: 5, img_url: ''},
+			  {color: d3.rgb(120, 167, 199), percentage: 35, img_url: ''},
+			  {color: "d3.rgb(11.5, 102.5, 3.5)", percentage: 30, img_url: ''}
+			]
+		 }
+		};
+
+		 const years = Object.keys(data);
+		 years.reverse().map(year => {
+		 	// initialize DOM for data
+		 	addYear(year);
+		 	// get data for given year.
+		 	for (let i = 0; i < 12; i++) {
+		 		curMonth = months[i]
+		 		monthData = makeDataArray(data[year][curMonth])
+				waffleChart(year, `.year${i}`, monthData)
+			}
+		 })
+	</script>
 </body>
 </html>
