@@ -2,6 +2,7 @@
 
 const makeDataArray = (data) => {
 	const newData = [];
+	console.log(Object.entries(data))
 	for (let [key, vals] of Object.entries(data)) {
 	    curCols = new Array(vals.percentage).fill(vals.color)
 	    newData.push(...curCols)
@@ -14,7 +15,7 @@ const addYearHeader = (year) => {
 				.text(`Year: ${year}`)
 				.lower()
 				.style('text-align', 'center')
-				.style('margin', '0px')
+				.style('margin', '1px') // vertical distance
 }
 
 
@@ -38,9 +39,7 @@ const addYear = (year,) => {
 			.style('margin-top', '0px')
 			// .style('flex-basis', '0px')
 			// .style('flex-grow', '1')
-
 	}
-
 }
 
 
@@ -53,11 +52,11 @@ const waffleChart = (year, selection, data) => {
   // create wrapper container
   sel
   	.style('display', 'grid')
-  	.style('max-width', '3%')
-  	.style('max-height', '10%')
+  	.style('max-width', '100%')
+  	.style('max-height', '100%')
   	.style("grid-template-rows", "1fr")
   	.style('grid-template-columns', "repeat(10, 1fr)")
-  	.style('border', '10px solid transparent')
+  	.style('border', '1px solid transparent')
 
   // create each of the 100 divs
 	sel
@@ -67,11 +66,12 @@ const waffleChart = (year, selection, data) => {
 		.append('div')
 		.attr('class', newClass)
 		.style('width', '6px')
-		.style('height', '5px')
-		// .style('margin', '1px')
+		.style('height', '6px')
+		.style('margin', '1px')
 		.style('background-color', d => eval(d))
-		.style('opacity', .9)
+		.style('opacity', 1)
 		.style('padding', '0px')
+		.style('border-radius', '0px')
 
 	// Interactivity
 	d3.selectAll(selection)
