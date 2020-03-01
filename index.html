@@ -6,10 +6,38 @@
 	<link rel="stylesheet" type="text/css" href="waffle.css">
 </head>
 <body>
-	<center><h1>THE COLORS OF NATIONAL GEOGRAPHIC</h1></center>
+	<center ><h1>THE COLORS OF NATIONAL GEOGRAPHIC</h1>
+	<h4>By <a href="">Jared Wilber</a></h4>
+	<p>
+		This is a paragraph talking about the color palettes of National Geographic.
+		We know that the magazine is reknown for its covers; they detail serene landscapes, mystical animals,
+		and unseen voyages. But, exactly, makes the covers so special? I am no photogarapher, so I can't hope
+		to detail the photograph specifics. 
+		<br><br>
+		Thus, we'll look into color.
+	</p>
+	</center>
 	<div id="container"></div>
 
-	<script src="waffle2.js"></script>
+	<script src="waffle.js"></script>
+	<button id="showAllButton" type="button" onclick="displayCovers()">Show All Years (1980 - 2018)</button>
+	<center><p>
+		This is a paragraph talking about the color palettes of National Geographic.
+		We know that the magazine is reknown for its covers; they detail serene landscapes, mystical animals,
+		and unseen voyages. But, exactly, makes the covers so special? I am no photogarapher, so I can't hope
+		to detail the photograph specifics. 
+		<br><br>
+		Thus, we'll look into color.
+	</p>
+	<p>
+		This is a paragraph talking about the color palettes of National Geographic.
+		We know that the magazine is reknown for its covers; they detail serene landscapes, mystical animals,
+		and unseen voyages. But, exactly, makes the covers so special? I am no photogarapher, so I can't hope
+		to detail the photograph specifics. 
+		<br><br>
+		Thus, we'll look into color.
+	</p>
+</center>
 	<script>
 		const months = [
 			'jan',
@@ -25,6 +53,11 @@
 			'nov',
 			'dec'
 			];
+		// add tooltip to document
+		d3.select('body')
+			.append('div')
+			.attr('id', 'tooltip')
+			.attr('style', 'position: absolute; opacity: 0;');
 		
 		d3.json("color_palettes.json").then(function(data){
 	        const years = Object.keys(data);
@@ -34,7 +67,8 @@
 			 	// get data for given year.
 			 	months.map((curMonth, i) => {
 			 		monthData = makeDataArray(data[year][curMonth])
-					waffleChart(year, `.year${i+1}`, monthData)
+			 		img_link = data[year][curMonth][0]['percentage']
+					waffleChart(year, `.year${i+1}`, monthData, img_link)
 				})
 			 })
 		    });
