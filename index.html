@@ -60,7 +60,8 @@
 		d3.select('body')
 			.append('div')
 			.attr('id', 'tooltip')
-			.attr('style', 'position: absolute; opacity: 0;');
+			.attr('style', 'position: absolute; opacity: 0;')
+			
 		
 		d3.json("color_palettes.json").then(function(data){
 	        const years = Object.keys(data);

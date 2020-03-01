@@ -1,6 +1,7 @@
 
 let clicked = false;
 
+
 const makeDataArray = (data) => {
 	const newData = [];
 	for (let [key, vals] of Object.entries(data)) {
@@ -78,13 +79,17 @@ const addYear = (year,) => {
 }
 
 
+
+
 const waffleChart = (year, selection, data, tag) => {
 	// console.log('tag', tag)
 	// grab selection
-  const sel = d3.select(`.year${year}`).select(selection)
+  const sel = d3.select(`.year${year}`)
+
+  let sel2 = sel.select(selection)
   let newClass = `block${selection.slice(1,)}`
   // create wrapper container
-  sel
+  sel2
   	.style('display', 'grid')
   	.style('max-width', '100%')
   	.style('max-height', '100%')
@@ -93,7 +98,7 @@ const waffleChart = (year, selection, data, tag) => {
   	.style('border', '1px solid transparent')
 
   // create each of the 100 divs
-	sel
+	sel2
 		.selectAll('.block')
 		.data(data)
 		.enter()
@@ -107,22 +112,74 @@ const waffleChart = (year, selection, data, tag) => {
 		.style('padding', '0px')
 		.style('border-radius', '0px')
 
+	// update tooltip (once)
+	// tooltip
+	d3.select('#tooltip').style('opacity', 1)
+	.html(`
+		<div>
+		<p>${tag}, ${year}</p>
+		<p>Year:</p>
+		<ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'>
+		<img src='https://avatars1.githubusercontent.com/u/8595819?s=460&v=4>' width=50
+		</ahref>
+		</div>`)
+
 	// Interactivity
-	sel
+		sel.selectAll('figure')
 		.on('mouseover', function(d) {
-			d3.select(this).selectAll(`.${newClass}`)
-				.style('opacity', 1)
-				.style('transform', 'scale(4,4)')
+
+
+			d3.select(this).selectAll('div[class^=blockyear]')
+				.style('transform', 'scale(4, 4)')
 				.style('transition', 'all 0.2s')
-			// tooltip
-			d3.select('#tooltip').style('opacity', 1).text(tag)
-		})
+
+			let pos = d3.select(this).node().getBoundingClientRect();
+
+			d3.select('#tooltip')
+				.style('opacity', 1)
+				.style('left', `${pos['x']}px`)
+		        .style('top', `${(window.pageYOffset + pos['y'] - 165)}px`);
+			})
 		.on('mouseout', function(d) {
-			d3.select(this).selectAll(`.${newClass}`)
-				.style('opacity', 0.8)
+			d3.select(this).selectAll('div[class^=blockyear]')
 				.style('transform', 'scale(1, 1)')
 				.style('transition', 'all 0.2s')
-		});
+			})
+
+	// sel.selectAll('figure')
+	// 	.on('mouseover', function(d) {
+	// 		// console.log(d3.select(this).selectAll('div[class~="year"]'))
+			// pos = d3.select(this).node().getBoundingClientRect();
+	// 		console.log(newClass)
+	// 		// d3.select(this).selectAll(`.${newClass}`)
+	// 		// 	.transition(newClass)
+	// 		// 	.style('opacity', 1)
+	// 		// 	.style('transform', 'scale(4,4)')
+	// 		// 	.style('transition', 'all 0.2s')
+	// // 		d3.select(this).selectAll('figure').selectAll('div[class^=blockyear]')
+	// // .style('transform', 'scale(4,4)')
+	// // 			.style('transition', 'all 0.2s')
+			
+
+			// d3.select('#tooltip')
+			// 	.style('opacity', 1)
+			// 	.style("left", (pos['x']) + "px")
+			//       .style("top", (pos['y']-100) + "px");
+	// 	})
+	// 	.on('mouseout', function(d) {
+	// 		// d3.select(this).selectAll(`.${newClass}`)
+	// 		// 	.transition(newClass)
+	// 		// 	.style('opacity', 0.8)
+	// 		// 	.style('transform', 'scale(1, 1)')
+	// 		// 	.style('transition', 'all 0.2s')
+
+	// 		d3.select(this).selectAll('figure').selectAll('div[class^=blockyear]')
+	// .style('transform', 'scale(1,1)')
+	// 			.style('transition', 'all 0.2s')
+			
+
+	// 		d3.select('#tooltip').style('opacity', 0)
+	// 	});
 }
 
 

@@ -64,19 +64,10 @@ button {
   justify-content: center;
 }
 
-/*.outer-grid {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-  max-width: 100%;
-  align-content: center;
-	min-width: 50%;
+#tooltip {
+  border: 2px solid gold;
+  pointer-events: none;
 }
-*/
-/*.outer-grid {
-  display: inline-flex;
-  max-width: 100%;
-  width: 100%;
-}*/
 
 
 #container {
