@@ -125,16 +125,15 @@ const waffleChart = (year, selection, data, tag) => {
 		</div>`)
 
 	// Interactivity
-		sel.selectAll('figure')
+	sel.selectAll('figure')
 		.on('mouseover', function(d) {
-
-
 			d3.select(this).selectAll('div[class^=blockyear]')
 				.style('transform', 'scale(4, 4)')
 				.style('transition', 'all 0.2s')
 
 			let pos = d3.select(this).node().getBoundingClientRect();
 
+			// view tooltip
 			d3.select('#tooltip')
 				.style('opacity', 1)
 				.style('left', `${pos['x']}px`)
@@ -144,42 +143,11 @@ const waffleChart = (year, selection, data, tag) => {
 			d3.select(this).selectAll('div[class^=blockyear]')
 				.style('transform', 'scale(1, 1)')
 				.style('transition', 'all 0.2s')
+
+			// remove tooltip
+			d3.select('#tooltip')
+				.style('opacity', 0)
 			})
-
-	// sel.selectAll('figure')
-	// 	.on('mouseover', function(d) {
-	// 		// console.log(d3.select(this).selectAll('div[class~="year"]'))
-			// pos = d3.select(this).node().getBoundingClientRect();
-	// 		console.log(newClass)
-	// 		// d3.select(this).selectAll(`.${newClass}`)
-	// 		// 	.transition(newClass)
-	// 		// 	.style('opacity', 1)
-	// 		// 	.style('transform', 'scale(4,4)')
-	// 		// 	.style('transition', 'all 0.2s')
-	// // 		d3.select(this).selectAll('figure').selectAll('div[class^=blockyear]')
-	// // .style('transform', 'scale(4,4)')
-	// // 			.style('transition', 'all 0.2s')
-			
-
-			// d3.select('#tooltip')
-			// 	.style('opacity', 1)
-			// 	.style("left", (pos['x']) + "px")
-			//       .style("top", (pos['y']-100) + "px");
-	// 	})
-	// 	.on('mouseout', function(d) {
-	// 		// d3.select(this).selectAll(`.${newClass}`)
-	// 		// 	.transition(newClass)
-	// 		// 	.style('opacity', 0.8)
-	// 		// 	.style('transform', 'scale(1, 1)')
-	// 		// 	.style('transition', 'all 0.2s')
-
-	// 		d3.select(this).selectAll('figure').selectAll('div[class^=blockyear]')
-	// .style('transform', 'scale(1,1)')
-	// 			.style('transition', 'all 0.2s')
-			
-
-	// 		d3.select('#tooltip').style('opacity', 0)
-	// 	});
 }
 
 
