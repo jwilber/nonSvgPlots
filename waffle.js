@@ -131,7 +131,7 @@ const waffleChart = (year, selection, data, img_url, month) => {
 			d3.select('#tooltip')
 				.style('opacity', 1)
 				.html(`
-					<div >
+					<div style="">
 					<p class="t">${month}, ${year}</p>
 					<img src='data/images/${cover_url}' width=170 height=${cover_height}
 					</div>`)
