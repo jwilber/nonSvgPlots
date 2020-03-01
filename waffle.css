@@ -66,6 +66,15 @@ button {
 
 #tooltip {
   pointer-events: none;
+  background-color: white;
+}
+
+.t {
+  color: black;
+  margin: 0px;
+  font-weight: bold;
+  padding: 0px;
+  font-size: .75rem;
 }
 
 

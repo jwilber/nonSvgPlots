@@ -43,18 +43,18 @@
 </center>
 	<script>
 		const months = [
-			'jan',
-			'feb',
-			'mar',
-			'apr',
-			'may',
-			'jun',
-			'jul',
-			'aug',
-			'sep',
-			'oct',
-			'nov',
-			'dec'
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
 			];
 		// add tooltip to document
 		d3.select('body')
@@ -63,7 +63,7 @@
 			.attr('style', 'position: absolute; opacity: 0;')
 			
 		
-		d3.json("color_palettes2.json").then(function(data){
+		d3.json("color_palettes3.json").then(function(data){
 	        const years = Object.keys(data);
 			 years.reverse().map(year => {	
 			 	// initialize DOM for data
@@ -72,7 +72,7 @@
 			 	months.map((curMonth, i) => {
 			 		monthData = makeDataArray(data[year][curMonth])
 			 		img_url = data[year][curMonth][0]['img_url']
-					waffleChart(year, `.year${i+1}`, monthData, img_url)
+					waffleChart(year, `.year${i+1}`, monthData, img_url, curMonth)
 				})
 			 })
 		    });

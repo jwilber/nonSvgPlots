@@ -1,7 +1,6 @@
 
 let clicked = false;
 
-
 const makeDataArray = (data) => {
 	const newData = [];
 	for (let [key, vals] of Object.entries(data)) {
@@ -41,6 +40,7 @@ const displayCovers = () => {
 	 clicked = !clicked
 }
 
+
 const addYearHeader = (year) => {
 	d3.select(`.year${year}`).append("h3")
 				.text(`Year: ${year}`)
@@ -63,6 +63,7 @@ const addYear = (year,) => {
 	// add year title to grid
 	addYearHeader(year);
 
+	// hide oldest covers
 	d3.select(`.year${year}`)
 		.style('display', year > 2005 ? 'block' : 'none');
 
@@ -79,7 +80,7 @@ const addYear = (year,) => {
 
 
 
-const waffleChart = (year, selection, data, img_url) => {
+const waffleChart = (year, selection, data, img_url, month) => {
 	// grab selection
   const sel = d3.select(`.year${year}`)
   const sel2 = sel.select(selection)
@@ -102,6 +103,7 @@ const waffleChart = (year, selection, data, img_url) => {
 		.append('div')
 		.attr('class', newClass)
 		.attr('img_url', img_url)
+		.attr('month', month)
 		.style('width', '7px')
 		.style('height', '7px')
 		.style('margin', '0px')
@@ -118,21 +120,24 @@ const waffleChart = (year, selection, data, img_url) => {
 				.style('transform', 'scale(4, 4)')
 				.style('transition', 'all 0.2s')
 
-			const cover_height = 200;
+			const cover_height = 220;
 
 			let pos = d3.select(this).node().getBoundingClientRect();
 			
 			const cover_url = d3.select(this).select('div[class^=blockyear]').attr('img_url')
+			const month = d3.select(this).select('div[class^=blockyear]').attr('month')
+
 			// view tooltip
 			d3.select('#tooltip')
 				.style('opacity', 1)
 				.html(`
-					<div>
-					<img src='data/images/${cover_url}' width=160 height=${cover_height}
+					<div >
+					<p class="t">${month}, ${year}</p>
+					<img src='data/images/${cover_url}' width=170 height=${cover_height}
 					</div>`)
 				.style('left', `${pos['x'] - 45}px`)
 		        .style('top', `${(window.pageYOffset + pos['y'] - cover_height - 10)}px`);
-			})
+		})
 		.on('mouseout', function(d) {
 			d3.select(this).selectAll('div[class^=blockyear]')
 				.style('opacity', 1)
@@ -142,7 +147,7 @@ const waffleChart = (year, selection, data, img_url) => {
 			// remove tooltip
 			d3.select('#tooltip')
  				.style('opacity', 0)
-			})
+		})
 }
 
 
