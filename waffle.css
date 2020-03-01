@@ -29,7 +29,7 @@ h1, p, h2, h3, h4, button {
 }
 
 h1 {
-  outline: 5px solid rgb(254.8,210.67,4.24);
+  outline: 8px solid rgb(254.8,210.67,4.24);
   border: 5px solid transparent;
   display: inline-block;
 }
@@ -65,7 +65,6 @@ button {
 }
 
 #tooltip {
-  border: 2px solid gold;
   pointer-events: none;
 }
 

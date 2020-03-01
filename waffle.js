@@ -73,21 +73,18 @@ const addYear = (year,) => {
 			.style('width', '0px')
 			.style('margin-botom', '0px')
 			.style('margin-top', '0px')
-			// .style('flex-basis', '0px')
-			// .style('flex-grow', '1')
 	}
 }
 
 
 
 
-const waffleChart = (year, selection, data, tag) => {
-	// console.log('tag', tag)
+const waffleChart = (year, selection, data, img_url) => {
 	// grab selection
   const sel = d3.select(`.year${year}`)
-
-  let sel2 = sel.select(selection)
+  const sel2 = sel.select(selection)
   let newClass = `block${selection.slice(1,)}`
+
   // create wrapper container
   sel2
   	.style('display', 'grid')
@@ -104,25 +101,14 @@ const waffleChart = (year, selection, data, tag) => {
 		.enter()
 		.append('div')
 		.attr('class', newClass)
-		.style('width', '6px')
-		.style('height', '6px')
+		.attr('img_url', img_url)
+		.style('width', '7px')
+		.style('height', '7px')
 		.style('margin', '0px')
 		.style('background-color', d => eval(d))
-		.style('opacity', year == 2006 ? 0.5 : 1)
+		.style('opacity', 1)
 		.style('padding', '0px')
 		.style('border-radius', '0px')
-
-	// update tooltip (once)
-	// tooltip
-	d3.select('#tooltip').style('opacity', 1)
-	.html(`
-		<div>
-		<p>${tag}, ${year}</p>
-		<p>Year:</p>
-		<ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'>
-		<img src='https://avatars1.githubusercontent.com/u/8595819?s=460&v=4>' width=50
-		</ahref>
-		</div>`)
 
 	// Interactivity
 	sel.selectAll('figure')
@@ -132,17 +118,24 @@ const waffleChart = (year, selection, data, tag) => {
 				.style('transform', 'scale(4, 4)')
 				.style('transition', 'all 0.2s')
 
-			let pos = d3.select(this).node().getBoundingClientRect();
+			const cover_height = 200;
 
+			let pos = d3.select(this).node().getBoundingClientRect();
+			
+			const cover_url = d3.select(this).select('div[class^=blockyear]').attr('img_url')
 			// view tooltip
 			d3.select('#tooltip')
 				.style('opacity', 1)
-				.style('left', `${pos['x']}px`)
-		        .style('top', `${(window.pageYOffset + pos['y'] - 165)}px`);
+				.html(`
+					<div>
+					<img src='data/images/${cover_url}' width=160 height=${cover_height}
+					</div>`)
+				.style('left', `${pos['x'] - 45}px`)
+		        .style('top', `${(window.pageYOffset + pos['y'] - cover_height - 10)}px`);
 			})
 		.on('mouseout', function(d) {
 			d3.select(this).selectAll('div[class^=blockyear]')
-				.style('opacity', year == 2006 ? (clicked == false ? 0.5 : 1) : 1)
+				.style('opacity', 1)
 				.style('transform', 'scale(1, 1)')
 				.style('transition', 'all 0.2s')
 
