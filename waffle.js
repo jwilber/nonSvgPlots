@@ -128,6 +128,7 @@ const waffleChart = (year, selection, data, tag) => {
 	sel.selectAll('figure')
 		.on('mouseover', function(d) {
 			d3.select(this).selectAll('div[class^=blockyear]')
+				.style('opacity', 1)
 				.style('transform', 'scale(4, 4)')
 				.style('transition', 'all 0.2s')
 
@@ -141,12 +142,13 @@ const waffleChart = (year, selection, data, tag) => {
 			})
 		.on('mouseout', function(d) {
 			d3.select(this).selectAll('div[class^=blockyear]')
+				.style('opacity', year == 2006 ? (clicked == false ? 0.5 : 1) : 1)
 				.style('transform', 'scale(1, 1)')
 				.style('transition', 'all 0.2s')
 
 			// remove tooltip
 			d3.select('#tooltip')
-				.style('opacity', 0)
+ 				.style('opacity', 0)
 			})
 }
 
