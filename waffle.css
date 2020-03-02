@@ -50,7 +50,7 @@ button {
   margin: auto;
 }
 
-.outer-grid {
+/*.outer-grid {
   height: 100%;
   padding: 0;
   margin: 0;
@@ -62,11 +62,21 @@ button {
   margin-left: 0px;
   align-items: center;
   justify-content: center;
+}*/
+
+.outer-grid {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  max-width: 50%;
+  margin: auto;
 }
+
+
 
 #tooltip {
   pointer-events: none;
-  /*background-color: white;*/
+  background-color: white;
 }
 
 .t {
@@ -75,12 +85,18 @@ button {
   font-weight: bold;
   padding: 0px;
   font-size: .75rem;
-  background-color: white;
 }
 
 
 #container {
-  /*margin: auto;*/
-  max-width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  max-width: 50%;
+}
 
+figure {
+  flex: 1;
+  height: 100%;
+  flex-basis: 100%;
+ margin: 1%;
 }

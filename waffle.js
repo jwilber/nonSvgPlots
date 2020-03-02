@@ -93,7 +93,7 @@ const waffleChart = (year, selection, data, img_url, month) => {
   	.style('max-height', '100%')
   	.style("grid-template-rows", "1fr")
   	.style('grid-template-columns', "repeat(10, 1fr)")
-  	.style('border', '1px solid transparent')
+  	// .style('border', '1px solid transparent')
 
   // create each of the 100 divs
 	sel2
@@ -111,6 +111,10 @@ const waffleChart = (year, selection, data, img_url, month) => {
 		.style('opacity', 1)
 		.style('padding', '0px')
 		.style('border-radius', '0px')
+
+	sel.selectAll('figure')
+		.style('border', '4px solid rgb(254.8,210.67,4.24)')
+				.style('width', '100%')
 
 	// Interactivity
 	sel.selectAll('figure')
@@ -131,12 +135,12 @@ const waffleChart = (year, selection, data, img_url, month) => {
 			d3.select('#tooltip')
 				.style('opacity', 1)
 				.html(`
-					<div style="">
+					<div >
 					<p class="t">${month}, ${year}</p>
 					<img src='data/images/${cover_url}' width=170 height=${cover_height}
 					</div>`)
 				.style('left', `${pos['x'] - 45}px`)
-		        .style('top', `${(window.pageYOffset + pos['y'] - cover_height - 10)}px`);
+		        .style('top', `${(window.pageYOffset + pos['y'] - cover_height - 20)}px`);
 		})
 		.on('mouseout', function(d) {
 			d3.select(this).selectAll('div[class^=blockyear]')
@@ -149,6 +153,4 @@ const waffleChart = (year, selection, data, img_url, month) => {
  				.style('opacity', 0)
 		})
 }
-
-
 
