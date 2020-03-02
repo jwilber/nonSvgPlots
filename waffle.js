@@ -18,10 +18,6 @@ const displayCovers = () => {
 				year = d3.select(this).attr('class').slice(4,);
 				return year > 2005 ? 'block' : 'none';
 			});
-		// change 2006's opacity 
-		d3.select('.year2006')
-			.selectAll('div[class^=block')
-			.style('opacity', 0.5)
 		// update button text
 		d3.select('#showAllButton')
 			.text('Show All Covers')
@@ -29,10 +25,6 @@ const displayCovers = () => {
 		// display all covers
 		d3.selectAll('div[class^=year]')
 			.style('display', 'block')
-		// change 2006's opacity 
-		d3.select('.year2006')
-			.selectAll('div[class^=block')
-			.style('opacity', 1)
 	 	// update button text
 	 	d3.select('#showAllButton')
 		.text('Show Fewer Covers')

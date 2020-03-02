@@ -100,3 +100,8 @@ figure {
   flex-basis: 100%;
  margin: 1%;
 }
+
+
+body {
+    background-image : url(http://api.thumbr.it/whitenoise-361x370.png?background=ffffffff&noise=9c5c5c&density=1&opacity=50);
+}
