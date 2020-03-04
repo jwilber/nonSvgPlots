@@ -105,7 +105,7 @@ const waffleChart = (year, selection, data, img_url, month) => {
 		.style('border-radius', '0px')
 
 	sel.selectAll('figure')
-		.style('border', '4px solid rgb(254.8,210.67,4.24)')
+		.style('border', '2px solid rgb(254.8,210.67,4.24)')
 				.style('width', '100%')
 
 	// Interactivity
